@@ -1,13 +1,14 @@
 # react-floating-scroll
 Floating Scroll React Component
-Inspired by jQuery Floating Scroll plugin (https://amphiluke.github.io/floating-scroll/)
+Inspired by jQuery Floating Scroll plugin (https://amphiluke.github.io/floating-scroll).
 
-Used espesially for antd (https://ant.design/) wide and long tables
+Used especially for antd (https://ant.design) wide and long tables
 
-Usage at the parent component:
+### Usage at the parent component:
 
 ```js
-import SteakyScroll from 'components/general/SteakyScroll';
+import SteakyScroll from 'path/to/SteakyScroll';
+import LongContentComponent from 'path/to/LongContentComponent';
 ...
 
 class YourParentComponent extends Component {
@@ -19,12 +20,19 @@ constructor(props) {
     ...
     }
 
+...
+
 render() {
-return (
-<SteakyScroll tableRef={this.tableRef} innerScrollableClass={'ant-table-body'}>
-<Table {...props}
-ref={this.contentRef}>
-</SteakyScroll>);
-}
+    return (
+        <SteakyScroll contentRef={this.contentRef}
+                      innerScrollableClass={`${innerScrollableClassName}`}>
+            <LongContentComponent {...props}
+                ref={this.contentRef}>
+        </SteakyScroll>);
+    }
 }
 ```
+
+For example, with antd tables:
+innerScrollableClassName is 'ant-table-body'
+LongContentComponent is Table
