@@ -1,9 +1,9 @@
 import React, {Fragment, Component} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import './SteakyScroll.css';
+import './ReactFloatingScroll.css';
 
-class SteakyScroll extends Component {
+class ReactFloatingScroll extends Component {
   static propTypes = {
     contentRef: PropTypes.object.isRequired,
     innerScrollableClass: PropTypes.string
@@ -142,4 +142,4 @@ class SteakyScroll extends Component {
   }
 }
 
-export default SteakyScroll;
+export default ReactFloatingScroll;

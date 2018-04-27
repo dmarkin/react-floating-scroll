@@ -7,7 +7,7 @@ Used especially for antd (https://ant.design) wide and long tables
 ### Usage at the parent component:
 
 ```js
-import SteakyScroll from 'path/to/SteakyScroll';
+import ReactFloatingScroll from 'path/to/ReactFloatingScroll';
 import LongContentComponent from 'path/to/LongContentComponent';
 ...
 
@@ -24,11 +24,11 @@ constructor(props) {
 
 render() {
     return (
-        <SteakyScroll contentRef={this.contentRef}
+        <ReactFloatingScroll contentRef={this.contentRef}
                       innerScrollableClass={`${innerScrollableClassName}`}>
             <LongContentComponent {...props}
                 ref={this.contentRef}>
-        </SteakyScroll>);
+        </ReactFloatingScroll>);
     }
 }
 ```
