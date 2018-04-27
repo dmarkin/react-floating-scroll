@@ -34,5 +34,4 @@ render() {
 ```
 
 For example, with antd tables:
-innerScrollableClassName is 'ant-table-body'
-LongContentComponent is Table
+innerScrollableClassName is 'ant-table-body' and LongContentComponent is Table
