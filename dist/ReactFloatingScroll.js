@@ -34,7 +34,7 @@ class ReactFloatingScroll extends Component {
     const scrollWidth = contentRefEl && elToScroll ? elToScroll.scrollWidth : 0;
     const scrollRefEl = this.scrollRef.current;
     const scrollBlockRefEl = this.scrollBlockRef.current;
-    const visible = this.state.visible;
+
     const _this = this;
 
     if (contentRefEl && elToScroll) {
@@ -48,7 +48,7 @@ class ReactFloatingScroll extends Component {
 
     if (scrollRefEl) {
       scrollRefEl.onscroll = (e) => {
-        visible && _this.syncCont(e.target, true);
+        _this.state.visible && _this.syncCont(e.target, true);
       };
     }
 
@@ -57,11 +57,11 @@ class ReactFloatingScroll extends Component {
 
     const contRect = contentRefEl.getBoundingClientRect();
     const maxVisibleY = window.innerHeight || document.documentElement.clientHeight;
-    const mustHide = ((contRect.bottom <= maxVisibleY) || (contRect.top > maxVisibleY));
+    const visible = !((contRect.bottom <= maxVisibleY) || (contRect.top > maxVisibleY));
 
     scrollBlockRefEl.style.width = `${scrollWidth}px`;
 
-    this.setState({contentRefEl, scrollRefEl, visible: !mustHide});
+    this.setState({contentRefEl, scrollRefEl, visible});
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -81,7 +81,7 @@ class ReactFloatingScroll extends Component {
       visible = !((contRect.bottom <= maxVisibleY) || (contRect.top > maxVisibleY));
     }
 
-    this.setState({visible: visible});
+    this.setState({visible});
   };
 
   syncSbar = (sender, preventSyncCont) => {
