@@ -73,20 +73,19 @@ class SteakyScroll extends Component {
   }
 
   checkVisibility = () => {
-    let mustHide = (parseInt(this.scrollBlockRef.current.style.width) <= this.state.scrollRefEl.offsetWidth);
+    let visible = (parseInt(this.scrollBlockRef.current.style.width) > this.state.scrollRefEl.offsetWidth);
 
-    if (!mustHide) {
+    if (visible) {
       let contRect = this.state.contentRefEl.getBoundingClientRect();
       let maxVisibleY = window.innerHeight || document.documentElement.clientHeight;
-      mustHide = ((contRect.bottom <= maxVisibleY) || (contRect.top > maxVisibleY));
+      visible = !((contRect.bottom <= maxVisibleY) || (contRect.top > maxVisibleY));
     }
-    if (this.state.visible === mustHide) {
-      this.setState({visible: !mustHide});
-    }
+
+    this.setState({visible: visible});
   };
 
   syncSbar = (sender, preventSyncCont) => {
-    if (this.state.preventSyncSbar === true) {
+    if (this.state.preventSyncSbar) {
       this.setState({preventSyncSbar: false});
       return;
     }
@@ -98,7 +97,7 @@ class SteakyScroll extends Component {
     const contentRefEl = ReactDOM.findDOMNode(this.props.contentRef.current);
     const elToScroll = contentRefEl.getElementsByClassName(this.props.innerScrollableClass)[0];
 
-    if (this.state.preventSyncCont === true) {
+    if (this.state.preventSyncCont) {
       this.setState({preventSyncCont: false});
       return;
     }
